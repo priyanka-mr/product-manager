@@ -40,21 +40,23 @@ const ProductList = () => {
 
     return (
         <div className={classes.outerContainer}>
-            <SearchFilter />
-            <Button onClick={onAddClick}>Add New Product</Button>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <SearchFilter />
+                <Button onClick={onAddClick}>Add New Product</Button>
+            </div>
             <div className={classes.tableContainer}>
                 {/* <MaterialReactTable columns={TABLE_COLUMNS} data={products} /> */}
                 <TableContainer style={{ maxHeight: '90vh' }}>
                     <Table stickyHeader>
                         <TableHead>
-                            <TableCell>ID</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Can Expire</TableCell>
-                            <TableCell>Expiry Date</TableCell>
-                            <TableCell>Category</TableCell>
-                            <TableCell>Price</TableCell>
-                            <TableCell>On Special</TableCell>
-                            <TableCell>Actions</TableCell>
+                            <TableCell style={{ fontWeight: 'bolder' }}>ID</TableCell>
+                            <TableCell style={{ fontWeight: 'bolder' }}>Description</TableCell>
+                            <TableCell style={{ fontWeight: 'bolder' }}>Can Expire</TableCell>
+                            <TableCell style={{ fontWeight: 'bolder' }}>Expiry Date</TableCell>
+                            <TableCell style={{ fontWeight: 'bolder' }}>Category</TableCell>
+                            <TableCell style={{ fontWeight: 'bolder' }}>Price</TableCell>
+                            <TableCell style={{ fontWeight: 'bolder' }}>On Special</TableCell>
+                            <TableCell style={{ fontWeight: 'bolder' }}>Actions</TableCell>
                         </TableHead>
                         <TableBody>
                             {filterProducts.map((product: Product) => (

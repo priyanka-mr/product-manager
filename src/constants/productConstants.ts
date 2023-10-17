@@ -6,7 +6,7 @@ export const SAMPLE_DATA: Array<Product> = [
         description: 'Product 1',
         canExpire: true,
         category: 'cat1',
-        price: 1,
+        price: 100,
         isSpecial: true,
         expiryDate: '16-Oct-2023'
     },
@@ -15,7 +15,7 @@ export const SAMPLE_DATA: Array<Product> = [
         description: 'Product 2',
         canExpire: true,
         category: 'cat2',
-        price: 1,
+        price: 200,
         isSpecial: false,
         expiryDate: '16-Oct-2023'
     },
@@ -24,9 +24,36 @@ export const SAMPLE_DATA: Array<Product> = [
         description: 'Product 3',
         canExpire: true,
         category: 'cat3',
-        price: 1,
+        price: 300,
         isSpecial: true,
         expiryDate: '16-Oct-2023'
+    },
+    {
+        id: '14',
+        description: 'Product 4',
+        canExpire: false,
+        category: 'cat1',
+        price: 100,
+        isSpecial: true,
+        expiryDate: 'NA'
+    },
+    {
+        id: '15',
+        description: 'Product 5',
+        canExpire: true,
+        category: 'cat2',
+        price: 200,
+        isSpecial: false,
+        expiryDate: '16-Oct-2023'
+    },
+    {
+        id: '16',
+        description: 'Product 6',
+        canExpire: false,
+        category: 'cat3',
+        price: 300,
+        isSpecial: true,
+        expiryDate: 'NA'
     },
 ];
 
