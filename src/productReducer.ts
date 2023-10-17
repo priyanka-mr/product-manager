@@ -14,15 +14,14 @@ export interface Product {
 export interface InitialState {
     products: Array<Product>;
     dialogMap: Record<string, boolean>;
-    // newEntry: Product;
     selectedEntry?: Product;
+    selectedCategory?: string;
 }
 export const initialState: InitialState = {
     products: SAMPLE_DATA,
     dialogMap: {
         'formDialog': false,
     },
-    // newEntry: DEFAULT_STATE,
 };
 
 
@@ -49,15 +48,21 @@ const productSlice = createSlice({
             const { key, value } = action.payload;
             state.dialogMap[key] = value;
         },
-        // setNewEntry: (state, action: PayloadAction<Product>) => {
-        //     state.newEntry = action.payload;
-        // },
         setSelectedEntry: (state, action: PayloadAction<Product | undefined>) => {
             state.selectedEntry = action.payload;
-        }
+        },
+        filterProduct: (state, action: PayloadAction<string>) => {
+            const category = action.payload;
+            state.products  = state.products.filter((product) => 
+                product.category === category
+            );
+        },
+        setSelectedCategory: (state, action: PayloadAction<string>) => {
+            state.selectedCategory = action.payload;
+        },
     },
 });
 
-export const { createProduct, editProduct, deleteProduct, setDialogMap, setSelectedEntry } = productSlice.actions;
+export const { createProduct, editProduct, deleteProduct, setDialogMap, setSelectedEntry, setSelectedCategory, filterProduct } = productSlice.actions;
 
 export default productSlice.reducer;

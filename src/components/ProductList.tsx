@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 // import MaterialReactTable from 'material-react-table';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,12 +6,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteProduct, Product, setDialogMap, setSelectedEntry } from '../productReducer';
 import { RootState } from '../store';
 import useStyles from './styles';
+import FormDialog from './FormDialog';
+import SearchFilter from './SearchFilter';
 
 const ProductList = () => {
     const state = useSelector((state: RootState) => state.productList);
     const dispatch = useDispatch();
-    const { products } = state;
+    const { products, selectedCategory } = state;
     const classes = useStyles();
+    const [filterProducts, setFilterProducts] = useState<Array<Product>>([]);
+
+    useEffect(() => {
+        if (selectedCategory && selectedCategory !== 'All') {
+            setFilterProducts(products.filter((product) => 
+            product.category === selectedCategory));
+            return;
+        }
+        setFilterProducts(products);
+    }, [products, selectedCategory]);
 
     const onAddClick = () => {
         dispatch(setDialogMap({ key: 'formDialog', value: true }));
@@ -28,6 +40,7 @@ const ProductList = () => {
 
     return (
         <div className={classes.outerContainer}>
+            <SearchFilter />
             <Button onClick={onAddClick}>Add New Product</Button>
             <div className={classes.tableContainer}>
                 {/* <MaterialReactTable columns={TABLE_COLUMNS} data={products} /> */}
@@ -44,7 +57,7 @@ const ProductList = () => {
                             <TableCell>Actions</TableCell>
                         </TableHead>
                         <TableBody>
-                            {products.map((product: Product) => (
+                            {filterProducts.map((product: Product) => (
                                 <TableRow hover key={product.id} style={{ backgroundColor: product.isSpecial ? '#90EE90' : 'transparent' }}>
                                     <TableCell>{product.id}</TableCell>
                                     <TableCell>{product.description}</TableCell>
@@ -62,6 +75,7 @@ const ProductList = () => {
                     </Table>
                 </TableContainer>
             </div>
+            <FormDialog />
         </div>
     );
 };
