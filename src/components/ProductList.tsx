@@ -60,7 +60,7 @@ const ProductList = () => {
                         </TableHead>
                         <TableBody>
                             {filterProducts.map((product: Product) => (
-                                <TableRow hover key={product.id} style={{ backgroundColor: product.isSpecial ? '#90EE90' : 'transparent' }}>
+                                <TableRow hover key={product.id} style={{ backgroundColor: product.isSpecial ? '#C1E1C1' : 'transparent' }}>
                                     <TableCell>{product.id}</TableCell>
                                     <TableCell>{product.description}</TableCell>
                                     <TableCell>{product.canExpire ? 'Yes' : 'No'}</TableCell>
